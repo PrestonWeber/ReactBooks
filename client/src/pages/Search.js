@@ -30,7 +30,8 @@ export default function bookSearch() {
       link: bookClicked.volumeInfo.link,
       publishedDate: bookClicked.volumeInfo.publishedDate
     };
-    axios.post("api/books", data).then(res => {
+    console.log(data);
+    axios.post("/api/books/", data).then(res => {
       console.log("Book Added");
     });
   };
