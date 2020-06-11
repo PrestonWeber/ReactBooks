@@ -1,12 +1,12 @@
 import React from "react";
 import "./DeleteBtn.css";
 
-function DeleteBtn(props) {
-  return (
-    <span className="delete-btn" {...props} role="button" tabIndex="0">
-      x
-    </span>
-  );
+DeleteBtn = props => {
+    return (
+        <span className="delete-btn" {...props} role="button" tabIndex="0">
+            X
+        </span>
+    )
 }
 
 export default DeleteBtn;

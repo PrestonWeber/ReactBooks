@@ -1,10 +1,17 @@
 import React, { useState } from "react";
-import Book from "../components/book";
-import Search from "../components/search";
+import Book from "../components/Book";
+import Search from "../components/Search";
 import axios from "axios";
 
 export default function bookSearch() {
   const [books, setBooks] = useState([]);
+
+  const handleSearch = (event, query) => {
+    event.preventDefault();
+    if (query) {
+      return searchBooks(query);
+    }
+  };
 
   const searchBooks = query => {
     axios
@@ -15,33 +22,25 @@ export default function bookSearch() {
   };
 
   const addBook = (e, bookId) => {
-    console.log(e.target.value);
-    const bookClicked = books.find(book => book.id === bookId);
-    console.log(bookClicked);
-    let bookImg = "img/noimgavail.jpg";
-    if (bookClicked.volumeInfo.imageLinks) {
-      bookImg = bookClicked.volumeInfo.imageLinks.smallThumbnail;
-    }
-    const data = {
-      title: bookClicked.volumeInfo.title,
-      authors: bookClicked.volumeInfo.authors,
-      description: bookClicked.volumeInfo.description,
-      image: bookImg,
-      link: bookClicked.volumeInfo.link,
-      publishedDate: bookClicked.volumeInfo.publishedDate
-    };
-    console.log(data);
-    axios.post("/api/books/", data).then(res => {
-      console.log("Book Added");
-    });
-  };
-
-  const handleSearch = (event, query) => {
-    event.preventDefault();
-    if (query) {
-      return searchBooks(query);
-    }
-  };
+      
+      const bookClicked = books.find(book => book.id === bookId);
+      let bookImg = "img/noimgavail.jpg";
+      if (bookClicked.volumeInfo.imageLinks) {
+          bookImg = bookClicked.volumeInfo.imageLinks.smallThumbnail;
+      }
+      const data = {
+          title: bookClicked.volumeInfo.title,
+          authors: bookClicked.volumeInfo.authors,
+          description: bookClicked.volumeInfo.description,
+          image: bookImg,
+          link: bookClicked.volumeInfo.link,
+          publishedDate: bookClicked.volumeInfo.publishedDate
+      };
+      console.log(data);
+      axios.post("/api/books/", data).then(res => {
+          console.log(res)
+      })
+  }
 
   const printBooks = () => {
     if (books.length > 0) {
@@ -58,7 +57,7 @@ export default function bookSearch() {
             img={bookImg}
             title={bookInfo.title}
             description={bookInfo.description}
-            authors={bookInfo.authors}
+            authors={bookInfo.publishedDate}
             publishedDate={bookInfo.publishedDate}
             link={bookInfo.previewLink}
             button="add"
@@ -72,12 +71,12 @@ export default function bookSearch() {
   };
 
   return (
-    <div>
-      <Search handleSearch={handleSearch} />
-      <hr></hr>
-      <div className="container">
-        <div className="row">{printBooks()}</div>
+      <div>
+          <Search handleSearch={handleSearch} />
+          <hr></hr>
+          <div className="container">
+              <div className="row">{printBooks()}</div>
+          </div>
       </div>
-    </div>
-  );
+  )
 }

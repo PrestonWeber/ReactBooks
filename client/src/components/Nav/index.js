@@ -14,7 +14,7 @@ export default function Nav() {
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="/list">
+            <a className="nav-link" href="/saved">
               My Collection
             </a>
           </li>
@@ -23,4 +23,3 @@ export default function Nav() {
     </nav>
   );
 }
-

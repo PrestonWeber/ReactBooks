@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 
 export default function Search(props) {
-    const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("");
 
-    console.log(props)
   return (
     <div>
       <form>
@@ -19,7 +18,11 @@ export default function Search(props) {
           className="col-sm-4"
         ></input>
         <div className="button-div">
-          <button type="button" className="btn btn-primary" onClick={(e) => props.handleSearch(e, search)}>
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={e => props.handleSearch(e, search)}
+          >
             Submit
           </button>
         </div>

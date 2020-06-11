@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Book from "../components/book";
+import Book from "../components/Book";
 import axios from "axios";
 
 export default function bookList() {
@@ -7,12 +7,11 @@ export default function bookList() {
 
   useEffect(() => {
     fetchBooks();
-  }, []);
+  });
 
   const fetchBooks = () => {
-    axios.get("/api/books").then(booksDB => {
+    axios.get(`api/books`).then(booksDB => {
       setBooks(booksDB.data);
-      console.log(books);
     });
   };
 
@@ -38,16 +37,14 @@ export default function bookList() {
         })
       );
     } else {
-      bookCards.push(<div key="none">There are no saved books</div>);
+      bookCards.push(<div key="none"> There are no saved books.</div>);
     }
     return bookCards;
   };
 
   const deleteBook = bookId => {
-    console.log(bookId);
-    axios.delete("api/books/" + bookId).then(res => {
-      console.log("book deleted");
-      fetchBooks();
+    axios.delete(`api/books/${bookId}`).then(res => {
+      this.fetchBooks();
     });
   };
 

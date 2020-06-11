@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Search from "./pages/Search";
 import Saved from "./pages/Saved";
-import Nav from "./components/nav";
+import Nav from "./components/Nav";
 import "./App.css";
 
 function App() {
@@ -11,8 +11,8 @@ function App() {
       <div>
         <Nav />
         <Switch>
-          <Route exact path="/list" component={Saved} />
           <Route exact path="/" component={Search} />
+          <Route exact path="/saved" component={Saved} />
         </Switch>
       </div>
     </Router>
