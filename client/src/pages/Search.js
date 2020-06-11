@@ -33,7 +33,7 @@ export default function bookSearch() {
           authors: bookClicked.volumeInfo.authors,
           description: bookClicked.volumeInfo.description,
           image: bookImg,
-          link: bookClicked.volumeInfo.link,
+          link: bookClicked.volumeInfo.previewLink,
           publishedDate: bookClicked.volumeInfo.publishedDate
       };
       console.log(data);
