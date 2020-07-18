@@ -1,29 +1,44 @@
-# Create React Express App
+## React Books
 
-## About This Boilerplate
+This project is an interface that allows you to search books via google books api, and save the books you want to check out later.
 
-This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
+## Getting Started
 
-## Starting the app locally
+You can either clone this repository, or download the zip folder to obtain this repository.  See deployment for notes on how to deploy the project.
 
-Start by installing front and backend dependencies. While in this directory, run the following command:
+## Prerequisites
 
-```
-npm install
-```
+You will need to have node installed on your computer, as well as mongodb.  For instructions on installing node js click here.
 
-This should install node modules within the server and the client folder.
+https://nodejs.org/en/download/
 
-After both installations complete, run the following command in your terminal:
+For instructions on installing mongodb, click here.
 
-```
-npm start
-```
+https://docs.mongodb.com/manual/installation/
 
-Your app should now be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
+On the back end, this application runs with axios, express, if-env, and mongoose.  These are already listed in the package.json, and will be installed from the terminal from navigate to the root folder, and running npm i.  
 
-## Deployment (Heroku)
+Similarly on the friend end, this is using react-router-dom, and axios, which can be installed the same way from the client folder.
 
-To deploy, simply add and commit your changes, and push to Heroku. As is, the NPM scripts should take care of the rest.
+## Running the tests
+
+to run the tests for this, you will need to navigate to the scripts folder in the terminal, and run the following command "node seedDB.js"
+
+This will run the code written within the seedDB.js file which connects to the local database, and creates the database if it doesn't exist, or connects if it does.  It deletes any data previously written in the database, and replaces it with the information listed as bookSeed.
+
+The way it does this is it uses a variable called db, which is defined in the models folder under book.js  That creates a schema with the data model that we're using to define the attributes of the book within the database.  We have listed,
+Title, Authors, Description, image, Link, and Date.  When making the api calls, it pulls that information from google books api to fill that info, and send it to the database when saving it.  In the seed, we're defining those attributes ourselves, and replacing the information with the info seeded.  I also have an event listener that catches errors if that fails.
+
+
+## Deployment
+
+To get this running on a live system, you can run npm start from the root folder.  Otherwise, you can deploy to Heroku, or AWS.  
+
+Instructions for Heroku
+
+https://devcenter.heroku.com/categories/deployment
+
+Instructions for AWS
+
+https://aws.amazon.com/getting-started/tutorials/deploy-code-vm/
